@@ -94,6 +94,23 @@ config COAP_KEEP_USER_DATA
 	help
 	  This option enables keeping application-specific user data
 
+config COAP_ASYNC_CLIENT
+	bool "Asynchronous coap client support"
+	help
+	  This option enables the API for asynchronous CoAP-client for sending CoAP requests
+
+if COAP_ASYNC_CLIENT
+
+config COAP_ASYNC_CLIENT_BUFFER_SIZE
+	int "Buffer sizes of send and receive buffer"
+	default 256
+
+config COAP_ASYNC_CLIENT_STACK_SIZE
+	int "Stack size of the coap async client thread"
+	default 1024
+
+endif # COAP_ASYNC_CLIENT
+
 module = COAP
 module-dep = NET_LOG
 module-str = Log level for CoAP
